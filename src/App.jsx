@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import Notes from "./notes";
-import Tags from "./tags";
-import Users from "./users";
+
+import UsersComponent from "./Users";
+import NotesComponent from "./Notes";
+import TagsComponent from "./Tags";
 
 function App() {
   return (
     <>
-      <Notes />
-      <Tags />
-      <Users />
+      <UsersComponent />
+      <NotesComponent />
+      <TagsComponent />
+      
     </>
   );
 }
