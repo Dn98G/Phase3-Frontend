@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const backendUrl = "http://localhost:8000";
+const backendUrl = "http://localhost:8001";
 
 export default function UsersComponent() {
   const [users, setUsers] = useState([]);
@@ -17,10 +17,12 @@ export default function UsersComponent() {
   const fetchAllUsers = async () => {
     try {
       const response = await axios.get(`${backendUrl}/users`);
-      const data = Array.isArray(response.data) ? response.data : [];
+    //  const data = Array.isArray(response.data) ? response.data : [];
       setUsers(data);
     } catch (error) {
-      console.error("Error fetching users:", error.response?.data || error.message || error);
+      console.error("Error fetching users:",
+        error
+      );
       alert("Failed to fetch users.");
     }
   };
@@ -98,7 +100,7 @@ export default function UsersComponent() {
 
   return (
     <div style={styles.container}>
-      <h2>User Management</h2>
+      <h2>A NOTE APP</h2>
 
       <div style={styles.section}>
         <h3>Add New User</h3>
@@ -255,12 +257,12 @@ const styles = {
     margin: "0 auto",
     backgroundColor: "#f8f9fa",
     borderRadius: "8px",
-    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+    boxShadow: "0 2px 4px rgba(15, 15, 15, 0.1)",
   },
   section: {
     marginBottom: "30px",
     padding: "20px",
-    border: "1px solid #dee2e6",
+    border: "1px solidrgb(28, 104, 180)",
     borderRadius: "5px",
     backgroundColor: "#fff",
   },
@@ -304,7 +306,7 @@ const styles = {
   searchResult: {
     marginTop: "20px",
     padding: "15px",
-    border: "1px solid #007bff",
+    border: "1px solidrgb(50, 128, 212)",
     borderRadius: "5px",
     backgroundColor: "#e9f7ff",
   },

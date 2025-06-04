@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const backendUrl = "http://localhost:5173"; 
+const backendUrl = "http://localhost:8001"; 
 
 export default function TagsComponent() {
   const [tags, setTags] = useState([]);
@@ -190,26 +190,34 @@ export default function TagsComponent() {
               </tr>
             </thead>
             <tbody>
-              {tags.map((tag) => (
-                <tr key={tag.id}>
-                  <td style={styles.td}>{tag.id}</td>
-                  <td style={styles.td}>{tag.name}</td>
-                  <td style={styles.td}>
-                    <button
-                      onClick={() => startEditing(tag)}
-                      style={styles.editButton}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => deleteTag(tag.id)}
-                      style={styles.deleteButton}
-                    >
-                      Delete
-                    </button>
+              {Array.isArray(tags) && tags.length > 0 ? (
+                tags.map((tag) => (
+                  <tr key={tag.id}>
+                    <td style={styles.td}>{tag.id}</td>
+                    <td style={styles.td}>{tag.name}</td>
+                    <td style={styles.td}>
+                      <button
+                        onClick={() => startEditing(tag)}
+                        style={styles.editButton}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => deleteTag(tag.id)}
+                        style={styles.deleteButton}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="3" style={styles.td}>
+                    No tags found.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         ) : (

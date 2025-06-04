@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const backendUrl = "http://localhost:5173";
+const backendUrl = "http://localhost:8001";
 
 export default function NotesComponent() {
   const [notes, setNotes] = useState([]);
@@ -125,13 +125,18 @@ export default function NotesComponent() {
       )}
 
       <ul>
-        {notes.map((note) => (
-          <li key={note.id}>
-            <strong>{note.title}</strong>: {note.content} (User: {note.user_id})
-            <button onClick={() => startEdit(note)}>Edit</button>
-            <button onClick={() => deleteNote(note.id)}>Delete</button>
-          </li>
-        ))}
+        {Array.isArray(notes) && notes.length > 0 ? (
+          notes.map((note) => (
+            <li key={note.id}>
+              <strong>{note.title}</strong>: {note.content} (User:{" "}
+              {note.user_id})
+              <button onClick={() => startEdit(note)}>Edit</button>
+              <button onClick={() => deleteNote(note.id)}>Delete</button>
+            </li>
+          ))
+        ) : (
+          <li>No notes found.</li>
+        )}
       </ul>
     </div>
   );
